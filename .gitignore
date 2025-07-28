@@ -1,6 +1,10 @@
 # Ignore Terraform state
 *.tfstate
 *.tfstate.backup
+.terraform/
+*.tfstate
+*.tfstate.backup
+
 
 # Ignore ZIPs or datasets
 *.zip
