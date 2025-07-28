@@ -1,9 +1,14 @@
-# Ignore Terraform local files and large directories
-.terraform/
+# Ignore Terraform state
 *.tfstate
-*.tfstate.*
-*.tfvars
-*.log
-*.lock.hcl
-crash.log
+*.tfstate.backup
 
+# Ignore ZIPs or datasets
+*.zip
+*.csv
+*.parquet
+*.log
+
+# Ignore AWS credentials or cache
+.aws/
+.terraform/
+__pycache__/
