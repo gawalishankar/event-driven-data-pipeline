@@ -1,0 +1,9 @@
+# Ignore Terraform local files and large directories
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.log
+*.lock.hcl
+crash.log
+
