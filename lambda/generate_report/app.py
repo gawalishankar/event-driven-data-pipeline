@@ -8,7 +8,7 @@ ses = boto3.client('ses')
 
 raw_bucket = 'event-driven-pipeline-raw-data'
 report_bucket = 'event-driven-pipeline-reports'
-email = 'gawalisa201@email.com'
+email = 'gawalisa201@gmail.com'
 
 def lambda_handler(event, context):
     response = s3.list_objects_v2(Bucket=raw_bucket)
