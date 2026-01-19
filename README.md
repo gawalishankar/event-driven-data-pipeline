@@ -6,98 +6,136 @@ This project demonstrates a fully automated, event-driven data processing pipeli
 
 ## 📌 Features
 
-- 🧩 **Modular Architecture** with S3, Lambda, EventBridge, SES
-- ⏱️ **EventBridge-triggered** daily report generation
-- 📊 **Summary reports** generated and emailed automatically
-- 🔐 **IAM roles & policies** for secure execution
-- 🛠 **Terraform** for Infrastructure as Code (IaC)
-- 🤖 **GitHub Actions** for continuous deployment
-- 🔍 **Monitoring via CloudWatch Logs**
+* 🧩 Modular architecture using S3, Lambda, EventBridge, and SES
+* ⏱️ EventBridge-triggered daily report generation
+* 📊 Automatic summary report creation and email delivery
+* 🔐 Secure execution using IAM roles & policies
+* 🛠 Infrastructure provisioned using Terraform (IaC)
+* 🤖 Automated deployment with GitHub Actions CI/CD
+* 🔍 Monitoring and logging with CloudWatch Logs
 
 ---
 
 ## 🗂 Project Structure
 
+```
 event-driven-pipeline/
 │
 ├── terraform/
-│ ├── main.tf
-│ ├── variables.tf
-│ ├── outputs.tf
-│ └── provider.tf
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── provider.tf
 │
 ├── lambda_ingest/
-│ └── index.py # Lambda to store incoming events to S3
+│   └── index.py      # Lambda to store incoming events to S3
 │
 ├── lambda_report/
-│ └── index.py # Lambda to read, process, and email reports
+│   └── index.py      # Lambda to process events and email reports
 │
 └── .github/workflows/
-└── ci-cd.yml # GitHub Actions workflow for auto-deploy
+    └── ci-cd.yml     # GitHub Actions workflow for auto-deploy
+```
 
+---
 
 ## ⚙️ How It Works
 
-1. **Data Ingestion**:
-   - Triggered manually or via API
-   - Lambda stores raw events in `s3://event-data-bucket/`
+### 1️⃣ Data Ingestion
 
-2. **Daily Reporting**:
-   - Triggered by EventBridge every 24h
-   - Lambda processes events from last day
-   - Summary is stored in `s3://event-report-bucket/`
-   - Email with report sent via Amazon SES
+* Triggered manually or via API
+* Lambda function stores raw events in:
+  `s3://event-data-bucket/`
+
+### 2️⃣ Daily Reporting
+
+* Triggered by EventBridge every 24 hours
+* Lambda processes events from the last day
+* Summary stored in:
+  `s3://event-report-bucket/`
+* Report emailed automatically via Amazon SES
 
 ---
 
 ## 🚀 Setup & Deployment
 
-1. Clone the repo
+### 1. Clone Repository
+
+```
 git clone https://github.com/your-username/event-driven-pipeline.git
 cd event-driven-pipeline
+```
 
-3. Configure AWS credentials
+### 2. Configure AWS Credentials
+
+```
 aws configure
+```
 
-5. Initialize Terraform
+### 3. Initialize Terraform
+
+```
 cd terraform
 terraform init
+```
 
-7. Deploy infrastructure
+### 4. Deploy Infrastructure
+
+```
 terraform apply
+```
 
-9. Trigger Lambda manually (for test)
+### 5. Test Lambda Ingestion
+
+```
 aws lambda invoke \
   --function-name lambda_ingest \
   --payload '{"user_id": "101", "action": "signup"}' \
   response.json
+```
 
-🔁 CI/CD with GitHub Actions
-Push to main automatically zips and deploys both Lambda functions.
+---
 
-Keeps Lambda code in sync with GitHub repo.
+## 🔁 CI/CD with GitHub Actions
 
-📧 Output Example (Email)
-Subject: Daily Report - 2025-07-27
-Events processed: 54
-Unique users: 12
-Most common action: "purchase"
+* Push to `main` branch triggers automated pipeline
+* Both Lambda functions are zipped and deployed automatically
+* Keeps AWS Lambda code in sync with GitHub repository
 
-🔍 Monitoring
-CloudWatch Logs for both Lambda functions
+---
 
-Error handling via structured logging
+## 📧 Output Example (Email)
 
-Easy troubleshooting via logs and email alerts
+**Subject:** Daily Report - 2025-07-27
 
-📘 Documentation
-📄 Research Report
+* Events processed: 54
+* Unique users: 12
+* Most common action: "purchase"
 
-🏗️ Architecture & Justification
+---
 
-👨‍💻 Author
-ShivShankar Gawali
+## 🔍 Monitoring & Logging
+
+* CloudWatch Logs enabled for both Lambda functions
+* Structured logging for error handling
+* Easy troubleshooting via logs and automated alerts
+
+---
+
+## 📘 Documentation
+
+* 📄 Research Report
+* 🏗️ Architecture Diagram & Justification
+
+---
+
+## 👨‍💻 Author
+
+**ShivShankar Gawali**
 LinkedIn | GitHub
 
-🏁 License
-This project is for educational and demo purposes.
+---
+
+## 🏁 License
+
+This project is for educational and demonstration purposes only.
